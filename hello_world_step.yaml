@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+#  labels:
+#    workflows.argoproj.io/archive-strategy: "false"
+#  annotations:
+#    workflows.argoproj.io/description: |
+#      This is a simple hello world example.
+spec:
+  entrypoint: hello-world-steps
+  templates:
+  - name: hello-world-steps
+    steps:
+    - - name: step-1
+        template: hello-world-1
+    - - name: step-2
+        template: hello-world-2
+    - - name: step-3
+        template: hello-world-3
+    - - name: step-4
+        template: hello-world-4
+
+  - name: hello-world-1
+    container:
+      image: busybox
+      command: [echo]
+      args: ["Hello from Step 1, Hello this is Yang"]
+
+  - name: hello-world-2
+    container:
+      image: busybox
+      command: [echo]
+      args: ["Hello from Step 2, here is my demo argo workflow"]
+
+  - name: hello-world-3
+    container:
+      image: busybox
+      command: [echo]
+      args: ["Hello from Step 3, I run some steps to show argo workflow can do it"]  
+
+  - name: hello-world-4
+    container:
+      image: busybox
+      command: [echo]
+      args: ["Hello from Step 4, Thank you for watch"]
+
